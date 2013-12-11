@@ -264,7 +264,7 @@
                             <li>Services</li>
                             <li>Gateways</li>
                         </ul>
-                    </div>
+                    </div>i
                 </div>
             </section>
 
@@ -398,9 +398,9 @@
                                     <div class="example-type"><p>XML</p></div>
                                     <p class="example-code">
                                         &lt;int:channel id="exampleChannel"&gt;<br/>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;interceptors&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="highlight">interceptors</span>&gt;<br/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;wire-tap channel="logger"/&gt;<br/>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/interceptors&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="highlight">interceptors</span>&gt;<br/>
                                         &lt;int:channel&gt;
                                     </p>
                                 </div>
@@ -658,7 +658,7 @@
 
 
                 <section>
-                    <h2>Configuration</h2>
+                    <h2>Custom Transformer</h2>
 
                     <div style="display: inline-table; width: 100%; height: 418px">
                         <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
@@ -702,15 +702,15 @@
                                 between the external system and the ESB messages.</p>
                             <ul>
                                 <li>Out of the box
-                                    <ul>
-                                        <li>JDBC Adapter</li>
-                                        <li>JMS Adapter</li>
-                                        <li>TCP & UDP Adapters</li>
-                                        <li>Email Adapter</li>
-                                        <li>HTTP Adapter</li>
-                                        <li>Web Service Adapter</li>
-                                        <li>JMX Adapter</li>
-                                        <li>XMPP Adapter</li>
+                                    <ul >
+                                        <li style="padding-bottom: 5px;">JDBC Adapter</li>
+                                        <li style="padding-bottom: 5px;">JMS Adapter</li>
+                                        <li style="padding-bottom: 5px;">TCP & UDP Adapters</li>
+                                        <li style="padding-bottom: 5px;">Email Adapter</li>
+                                        <li style="padding-bottom: 5px;">HTTP Adapter</li>
+                                        <li style="padding-bottom: 5px;">Web Service Adapter</li>
+                                        <li style="padding-bottom: 5px;">JMX Adapter</li>
+                                        <li style="padding-bottom: 5px;">XMPP Adapter</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -970,6 +970,13 @@
                         <ul>
                             <li><a href="http://docs.spring.io/spring-integration/docs/4.0.0.BUILD-SNAPSHOT/reference/htmlsingle/">Documentation</a></li>
                             <li><a href="https://github.com/spring-projects/spring-integration-samples">Spring Integration Samples (github)</a></li>
+                            <li>Articles
+                                <ul>
+                                    <li>
+                                        <a href="http://www.zdnet.com/blog/gardner/dont-use-an-esb-unless-you-absolutely-positively-need-one-mule-cto-warns/3060">Don’t use an ESB unless you absolutely, positively need one</a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
