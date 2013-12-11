@@ -1,0 +1,1040 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>An Introduction to jQuery & jQuery Mobile</title>
+
+		<meta name="description" content="An Introduction to jQuery & jQuery Mobile">
+		<meta name="author" content="Mike Nimer & Kellen Styler">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+
+		<link rel="stylesheet" href="lib/reveal.js/css/main.css">
+		<link rel="stylesheet" href="resource/css/theme/um.css" id="theme">
+		<link rel="stylesheet" href="lib/reveal.js/lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
+		<link rel="stylesheet" href="resource/css/editor.css">
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+			
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+
+            <section>
+                <h2>Enterprise Service Bus (ESB) <br/>Overview<br/>with Spring Integration</h2>
+
+                <p><br/><br/>
+                    Presented by:<br>
+                    Mike Nimer<br/>
+                    <a href="http://twitter.com/mnimer" target="_blank">@mnimer</a>
+                    <br/><br/>
+                    <a href="http://mnimer.github.io/ESB-Presentation" target="_blank">http://mnimer.github.io/ESB-Presentation</a>
+                </p>
+
+            </section>
+
+            <!--
+            <section>
+                <h2>About Me</h2>
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <ul style="text-align: center">
+                            <li>Dir. of Enterprise Solutions / Solution Architect for Universal Mind</li>
+                            <li>twitter: <b>@mnimer</b></li>
+                            <li>email: <b>mnimer@gmail.com</b></li>
+                            <li>blog: <b>http://www.mikenimer.com</b></li>
+                            <li>LinkedIn: <b>http://www.linkedin.com/in/mikenimer</b></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+                <img style="width:100%" src="resource/image/um-clients.png">
+            </section>
+            -->
+
+            <section>
+                <h2>Imagine</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 800px; height: 418px; vertical-align: middle;">
+                        <ul>
+                            <li>Breaking up large processes into small discrete steps (easily to code, easy to test)</li>
+                            <li>Scaling an application with thread pools, in-memory queues, or external queues (JMS). <br/>(In configuration, not code.)</li>
+                            <li>Ability to quickly change the flow of the application. (Adding steps, rearrange steps, split, etc..)</li>
+                        </ul>
+                        <img src="resource/newOrder.png" style="width:100%"/>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <section>
+                <h2>Enterprise Service Bus (ESB)</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                        <img src="resource/fig4.jpg" style="width:100%; max-width:843px;clear:both;"/><br/>
+                        <img src="resource/legopile.jpeg" />
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+            <section>
+                <h2>based on</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px;">
+                    <div style="display: table-cell; width: 50%; height: 418px; vertical-align: middle; align-content: right; text-align: right;">
+                        <img src="resource/bookcover.png" />
+                    </div>
+                    <div style="display: table-cell; width: 50%; height: 418px; vertical-align: top; text-align: left; padding: 10px;">
+                        <ul>
+                            <li>Gregor Hohpe, Bobby Woolf
+                                <ul>
+                                    <li>56 Integration Patterns</li>
+                                </ul>
+                            </li>
+                            <li><a href="http://www.eaipatterns.com/">http://www.eaipatterns.com/</a></li>
+                            <li></li>
+                            <li>OmniGraffle Stencils:</li>
+                            <li><a href="https://www.graffletopia.com/stencils/137">https://www.graffletopia.com/...</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+            <section>
+                <h2>Components</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <ul>
+                            <li>Messages</li>
+                            <li>Channels</li>
+                            <li>Routers</li>
+                            <li>Transformers</li>
+                            <li>Adapters</li>
+                            <li>Services</li>
+                            <li>Gateways</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+            <section>
+                <h2>Deja-Vu?</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <p>Adobe/Flex BlazeDS used some of these patterns</p>
+                        <br/>
+                        <ul>
+                            <li>Endpoints</li>
+                            <li>Channels</li>
+                            <li>Adapters</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+            <section>
+                <h2>Software Packages</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <ul>
+                            <li>Spring Integration</li>
+                            <li>MULE</li>
+                            <li>WS02</li>
+                            <li>Apache: Service Mix, Synapse, Camel</li>
+                            <li>JBoss, Oracle, IBM</li>
+                            <li>and more...</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+            <section>
+                <h2>Examples</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <ul>
+                            <li>Cloud Logging</li>
+                            <li>REST Services</li>
+                            <li>RSS Reader</li>
+                            <li>Importing Files</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Cloud Logging (Log4j)</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <img src="resource/CloudLogger.png" style="width:100%"/>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>REST Service (image metadata)</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <img src="resource/RESTService.png" style="width:100%"/>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>RSS Reader</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <img src="resource/RSSCloud-cluster2.png" style="width: 100%;"/>
+                        <br/><br/><br/>
+                        <img src="resource/RSSCloud-cluster3.png" style="width: 50%" />
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>Importing Files</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <img src="resource/FileImporter.png" style="width:100%"/>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <section>
+                <h2>Components</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <ul>
+                            <li>Messages</li>
+                            <li>Channels</li>
+                            <li>Routers</li>
+                            <li>Transformers</li>
+                            <li>Adapters</li>
+                            <li>Services</li>
+                            <li>Gateways</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section>
+                <section>
+                    <h2>Messages</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p>The common object that everything understands and passes around.</p>
+                            <br/>
+                            <ul>
+                                <li>Made up of 2 parts:
+                                <ul>
+                                    <li>Header (key/value)</li>
+                                    <li>Payload (serializable)</li>
+                                </ul></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section>
+                    <h2>Message Builder</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            [code example]
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+
+
+            <section>
+                <section>
+                    <h2>Channels</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p>The message pipe in and out of other components <br/>(services, adapters, etc). </p>
+
+                            <br/>
+                            <img src="resource/channels.png" style="height: 50%">
+
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Point to Point</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p>"A Point-to-Point Channel ensures that only one receiver consumes any given message"</p>
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">&lt;int:<span class="highlight">channel</span> id="exampleChannel"/&gt;</p>
+                                </div>
+                            </div>
+                            <img src="resource/point-to-point-channel.png" style="height: 50%;">
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Publish-Subscribe</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p>"One input channel that splits into multiple output channels, one for each subscriber."</p>
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">&lt;int:<span class="highlight">publish-subscribe-channel</span> id="exampleChannel"/&gt;</p>
+                                </div>
+                            </div>
+
+                            <img src="resource/publish-subscribe-channel.png" style="height: 50%;">
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Dead Letter Channel</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p>"When a messaging system determines that it cannot or should not deliver a message, it may elect to move the message to a Dead Letter Channel."</p>
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">&lt;int:service outputChannel="<span class="highlight">nullChannel</span>"/&gt;</p>
+                                </div>
+                            </div>
+
+                            <img src="resource/deal-letter-channel.png" style="height: 50%;">
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Interceptors</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+                                        &lt;int:channel id="exampleChannel"&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;interceptors&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;wire-tap channel="logger"/&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/interceptors&gt;<br/>
+                                        &lt;int:channel&gt;
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Queues & Thread Pools</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>Queue</p></div>
+                                    <p class="example-code">&lt;int:channel id="exampleChannel"&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="highlight">queue</span> capacity="25"/>/&gt;<br/>
+                                        &lt;/int:channel&gt;</p>
+                                </div>
+                                <div class="example-row">
+                                    <div class="example-type"><p>Thread Pool</p></div>
+                                    <p class="example-code">&lt;int:channel id="exampleChannel"&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="highlight">task:executor</span> id="executorWithPoolSizeRange" pool-size="5" queue-capacity="100"/&gt;<br/>
+                                        &lt;/int:channel&gt;</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+
+
+            <section>
+                <section>
+                    <h2>Routers</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p>Routers control the different process flows.</p>
+                            <br/>
+                            <ul>
+                                <li>Header Routers</li>
+                                <li>Content / Payload Routers</li>
+                                <li>Splitters</li>
+                                <li>Aggregators</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Header Router</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code" >
+                                        &lt;header-value-router <br/>input-channel="inChannel" <br/><span class="highlight">header-name="library"</span>&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;mapping value="<span class="highlight">drewNoakes</span>" channel="<span class="highlight">drewParser</span>" /&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;mapping value="<span class="highlight">apacheCommons</span>" channel="<span class="highlight">apacheParser</span>" /&gt;<br/>
+                                        &lt;/header-value-router&gt;
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Payload Type Router</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code" >
+                                        &lt;bean id="payloadTypeRouter" class="org.springframework.integration.router.PayloadTypeRouter"&gt;<br/>
+                                        &lt;property name="<span class="highlight">payloadTypeChannelMap</span>"&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;map&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entry key="<span class="highlight">com.data.User</span>" value-ref="<span class="highlight">userChannel</span>"/&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entry key="<span class="highlight">com.data.Product</span>" value-ref="<span class="highlight">productChannel</span>"/&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/map&gt;<br/>
+                                        &lt;/property&gt;<br/>
+                                        &lt;/bean&gt;<br/>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+
+                <section>
+                    <h2>Custom Routers</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <p>Takes in a Message and returns the name (String) of the channel to route the message to.</p>
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+                                        &lt;router<br/>
+                                        input-channel="inChannel"<br/>
+                                        default-output-channel="jsonChannel"<br/>
+                                        <span class="highlight">method="route"</span> &gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;beans:bean <span class="highlight">class="com.foo.FileRouter"</span>/&gt;<br/>
+                                        &lt;/router&gt;
+                                    </p>
+                                </div>
+                                <div class="example-row">
+                                    <div class="example-type"><p>Java</p></div>
+                                    <p class="example-code">
+                                        public <span class="highlight">String</span> route(<span class="highlight">Message message</span>){...}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Splitters</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <p>Takes in a single Message and returns a list of message.</p>
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+                                        &lt;splitter input-channel="inChannel"<br/>
+                                                  output-channel="outChannel"<br/>
+                                                  <span class="highlight">method="split"</span>&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;beans:bean <span class="highlight">class="com.foo.FileSplitter"</span>/&gt;<br/>
+                                        &lt;/spliter&gt;
+                                    </p>
+                                </div>
+                                <div class="example-row">
+                                    <div class="example-type"><p>Java</p></div>
+                                    <p class="example-code">
+                                        public <span class="highlight">List&lt;Post&gt;</span> split(<span class="highlight">Message message</span>){...}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Aggregators</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <p>Uses the auto-generated header values for: correlation id, sequence number and sequence size</p>
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+                                        &lt;aggregator <br/>
+                                        input-channel="inChannel" <br/>
+                                        output-channel="outChannel" <br/>
+                                        <span class="highlight">method="validate"</span> &gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;beans:bean <span class="highlight">class="org.foo.FileAggregator"</span>/&gt;<br/>
+                                        &lt;/aggregator&gt;
+
+                                    </p>
+                                </div>
+                                <div class="example-row">
+                                    <div class="example-type"><p>Java</p></div>
+                                    <p class="example-code">
+                                        public <span class="highlight">Message</span> verifyFiles(<span class="highlight">List&lt;Message&gt; message</span>){...}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+
+
+
+
+
+            <section>
+                <section>
+                    <h2>Transformers</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p>Transforms message from one format to another.</p>
+                            <ul>
+                                <li>String Transfromers
+                                    <ul>
+                                        <li>object-to-string-transformer (toString())</li>
+                                    </ul>
+                                </li>
+                                <li>Json Transformers
+                                    <ul>
+                                        <li>object-to-json-transformer</li>
+                                        <li>json-to-object-transformer</li>
+                                    </ul>
+                                </li>
+                                <li>XML Transformers
+                                    <ul>
+                                        <li>UnmarshallingTransformer</li>
+                                        <li>MarshallingTransformer</li>
+                                        <li>XsltPayloadTransformer</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Transformers (cont.)</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <ul>
+                                <li>Map Transformers
+                                    <ul>
+                                        <li>object-to-map-transformer</li>
+                                        <li>map-to-object-transformer</li>
+                                    </ul>
+                                </li>
+                                <li>File Transformers
+                                    <ul>
+                                        <li>file-to-bytes-transformer</li>
+                                        <li>file-to-string-transformer</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section>
+                    <h2>Configuration</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+                                        &lt;transformer id="testTransformer"<br/>
+                                                     input-channel="inChannel"<br/>
+                                                     output-channel="outChannel"<br/>
+                                                     <span class="highlight">method="transform"</span>&gt;<br/>
+                                        &lt;beans:bean <span class="highlight">class="org.foo.CustomTransformer"</span>/&gt;<br/>
+                                        &lt;/transformer&gt;
+                                    </p>
+                                </div>
+                                <div class="example-row">
+                                    <div class="example-type"><p>Java</p></div>
+                                    <p class="example-code">
+                                        public <span class="highlight">Message</span> transform(<span class="highlight">Message message</span>){...}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+
+
+
+            <section>
+                <section>
+                    <h2>Adapters</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <p>Used to connect the message bus to an external system and to perform any required mapping
+                                between the external system and the ESB messages.</p>
+                            <ul>
+                                <li>Out of the box
+                                    <ul>
+                                        <li>JDBC Adapter</li>
+                                        <li>JMS Adapter</li>
+                                        <li>TCP & UDP Adapters</li>
+                                        <li>Email Adapter</li>
+                                        <li>HTTP Adapter</li>
+                                        <li>Web Service Adapter</li>
+                                        <li>JMX Adapter</li>
+                                        <li>XMPP Adapter</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section>
+                    <h2>HTTP Adapter Example</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+                                        &lt;http:outbound-gateway id="example"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;request-channel="requests"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;reply-channel="replies"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight">url="http://localhost/test"</span><br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;http-method="POST"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;extract-request-payload="false"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight">expected-response-type="java.lang.String"</span><br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;charset="UTF-8"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;request-factory="requestFactory"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;request-timeout="200"/&gt;
+
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Mail Adapter Example</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+                                        &lt;int-mail:inbound-channel-adapter id="imapAdapter"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight">store-uri="imaps://[username]:[password]@imap.gmail.com/INBOX"</span><br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;java-mail-properties="javaMailProperties"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;channel="recieveChannel"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;should-delete-messages="true"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;should-mark-messages-as-read="true"<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;auto-startup="true"&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;int:poller max-messages-per-poll="1" fixed-rate="5000"/&gt;<br/>
+                                        &lt;/int-mail:inbound-channel-adapter&gt;<br/>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Custom Adapter</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;inbound-channel-adapter channel="outChannel" <span class="highlight">method="process"</span> &gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;beans:bean <span class="highlight">class="org.bar.Foo"</span>/&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="highlight">poller</span> fixed-rate="5000"/&gt;<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/inbound-channel-adapter&gt;<br/>
+                                    </p>
+                                </div>
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+                                        &lt;outbound-channel-adapter channel="inChannel" <span class="highlight">method="send"</span>&gt;<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;beans:bean <span class="highlight">class="org.bar.Foo"</span>/&gt;<br/>
+                                        &lt;/outbound-channel-adapter&gt;
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+            </section>
+
+
+
+
+
+            <section>
+                <section>
+                    <h2>Services</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p>
+                                Generic endpoint to connect a service to the messaging system.<br/>
+                                (The output channel is optional)
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Example</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>Java</p></div>
+                                    <p class="example-code">
+                                        public <span class="highlight">Message</span> execute(<span class="highlight">Message message</span>){...}</p>
+                                </div>
+                                <div class="example-row">
+                                    <div class="example-type"><p>Java</p></div>
+                                    <p class="example-code">
+                                        public <span class="highlight">void</span> execute(<span class="highlight">Message message</span>){...}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+
+
+
+
+            <section>
+                <section>
+                    <h2>Gateway</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p>Simple interface to allow code outside of the ESB to interact with the ESB, with zero dependenct on the Spring Integration API</p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Configuration</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>XML</p></div>
+                                    <p class="example-code">
+
+                                        &lt;si:gateway id="imageMetadataGateway"<br/>
+                                                    <span class="highlight">service-interface="apiserver...ImageMetadataGateway"</span><br/>
+                                                    default-reply-channel="imageMetadataChannelReplyChannel"<br/>
+                                                    default-reply-timeout="60"&gt;<br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;int:method <span class="highlight">name="getMetadataSync"</span> <br/>request-channel="<span class="highlight">imageMetadataChannelRequestChannel"</span>&gt;<br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="highlight">int:header</span> name="library" value="drewNoakes"/&gt;<br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/int:method&gt;<br/>
+                                            <br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;int:method <span class="highlight">name="getMetadataAsync"</span> <br/>request-channel="imageMetadataChannelRequestChannel"&gt;<br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;int:header name="library" value="drewNoakes"/&gt;<br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/int:method&gt;<br/>
+
+                                        &lt;/si:gateway&gt;<br/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Code</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>JAVA</p></div>
+                                    <p class="example-code">
+                                        public <span class="highlight">interface</span> ImageMetadataGateway<br/>
+                                        {<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;Map getMetadataSync(<span class="highlight">ImageDocumentJob args</span>);<br/>
+                                        <br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight">Future&lt;Map&gt;</span> getMetadataAsync(ImageDocumentJob args);<br/>
+                                        }<br/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="editor" data-source="resource/data/RestExample.json"></section>
+                <!--section>
+                    <h2>APIServer Example</h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <div class="example">
+                                <div class="example-row">
+                                    <div class="example-type"><p>JAVA</p></div>
+                                    <p>
+                                        @RequestMapping(value = "/metadata", method = {RequestMethod.POST})<br/>
+                                        public WebAsyncTask<Map> imageMetadataByImage(<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;@RequestParam(value = "file", required = true) MultipartFile file){<br/>
+                                            final MultipartFile _file = file;<br/>
+                                            <br/>
+                                            Callable<Map> callable = new Callable<Map>()<br/>
+                                            {<br/>
+                                                @Override<br/>
+                                                public Map call() throws Exception<br/>
+                                                {<br/>
+                                                    FileMetadataJob job = new FileMetadataJob();<br/>
+                                                    job.setDocumentId(null);<br/>
+                                                    job.setDocument( new Document(_file) );<br/>
+                                                    job.getDocument().setContentType( _file.getContentType() );<br/>
+                                                    job.getDocument().setFileName(_file.getOriginalFilename());<br/>
+                                                <br/>
+                                                    Future<Map> imageFuture = imageMetadataGateway.getMetadata(job);<br/>
+                                                    FileMetadataJob payload = (FileMetadataJob)imageFuture.get(defaultTimeout, TimeUnit.MILLISECONDS);<br/>
+                                                <br/>
+                                                    return payload.getMetadata();<br/>
+                                                }<br/>
+                                            };<br/>
+                                            return new WebAsyncTask<Map>(defaultTimeout, callable);<br/>
+                                        }<br/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section-->
+            </section>
+
+
+
+
+
+            <section>
+                <h2>Resources</h2>
+
+                <div style="display: inline-table; width: 100%; height: 418px">
+                    <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                        <ul>
+                            <li><a href="http://docs.spring.io/spring-integration/docs/4.0.0.BUILD-SNAPSHOT/reference/htmlsingle/">Documentation</a></li>
+                            <li><a href="https://github.com/spring-projects/spring-integration-samples">Spring Integration Samples (github)</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <section>
+                <section>
+                    <h2>Extra Credit: Javascript ESB </h2>
+
+                    <div style="display: inline-table; width: 100%; height: 418px">
+                        <div style="display: table-cell; width: 100%; height: 418px; vertical-align: middle;">
+                            <p><a href="https://github.com/cujojs/msgs">msgs.js</a> part of <a href="http://cujojs.com/">cujoJS</a> <br/>Inspired by Spring Integration (same developers)</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="editor" data-source="resource/data/msgsExamples.json"></section>
+            </section>
+
+
+
+			</div>
+			
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+			
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="lib/reveal.js/lib/js/head.min.js"></script>
+		<script src="lib/reveal.js/js/reveal.min.js"></script>
+		
+		<script src="lib/codemirror/lib/codemirror.js"></script>
+		<script src="lib/codemirror/mode/xml/xml.js"></script>
+		<script src="lib/codemirror/mode/javascript/javascript.js"></script>
+		<script src="lib/codemirror/mode/css/css.js"></script>
+		<script src="lib/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="lib/codemirror/lib/util/closetag.js"></script>
+		
+		<script>
+			Reveal.keyboardEnabled = true;
+			document.addEventListener( 'keydown', function(event) { if (!Reveal.keyboardEnabled) event.stopImmediatePropagation(); }, false );
+			
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				mouseWheel: false,
+                backgroundTransition:'slide',
+				theme: 'um',
+				transition: 'concave',
+				
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/reveal.js/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/jquery/jquery-1.8.2.min.js' },
+					{ src: 'lib/bpopup/jquery.bpopup-0.7.0.min.js' },
+					{ src: 'src/js/editor.js' }
+				]
+			});
+			
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,17 @@
+{
+    "title": "msgs.js Example",
+    "sections": [
+        {
+            "title": "Examples",
+            "steps": [
+                {
+                    "title": "Hello World Example",
+                    "url": "resource/data/template/examples/msgs/helloWorld.js"
+                },{
+                    "title": "Websocket & Redis Example",
+                    "url": "resource/data/template/examples/msgs/websocket_redis_example.js"
+                }
+            ]
+        }
+    ]
+}

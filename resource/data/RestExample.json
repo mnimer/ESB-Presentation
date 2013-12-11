@@ -1,0 +1,14 @@
+{
+    "title": "Rest/Gateway Example",
+    "sections": [
+        {
+            "title": "Examples",
+            "steps": [
+                {
+                    "title": "Async Rest Example",
+                    "url": "resource/data/template/examples/restService.java"
+                }
+            ]
+        }
+    ]
+}
