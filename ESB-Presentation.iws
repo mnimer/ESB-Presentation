@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db3d320c-e329-4e38-90b3-53fcf027701d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="ESB-Presentation.iws" />
@@ -70,7 +69,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="117" selection-start="234" selection-end="234" vertical-scroll-proportion="0.24590164" vertical-offset="0" max-vertical-offset="15945">
+            <state line="9" column="47" selection-start="278" selection-end="278" vertical-scroll-proportion="0.27663934" vertical-offset="0" max-vertical-offset="15945">
               <folding>
                 <element signature="n#style#0;n#div#0;n#section#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#section#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -196,8 +195,8 @@
         <option value="$PROJECT_DIR$/resource/data/template/examples/msgs/helloWorld.js" />
         <option value="$PROJECT_DIR$/resource/data/template/examples/msgs/websocket_redis_example.js" />
         <option value="$PROJECT_DIR$/resource/data/msgsExamples.json" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -544,7 +543,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18673000" />
+    <option name="totallyTimeSpent" value="18677000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="940" extended-state="6" />
@@ -1260,7 +1259,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="117" selection-start="234" selection-end="234" vertical-scroll-proportion="0.24590164" vertical-offset="0" max-vertical-offset="15945">
+        <state line="9" column="47" selection-start="278" selection-end="278" vertical-scroll-proportion="0.27663934" vertical-offset="0" max-vertical-offset="15945">
           <folding>
             <element signature="n#style#0;n#div#0;n#section#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#section#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
